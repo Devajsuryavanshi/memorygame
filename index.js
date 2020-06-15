@@ -3,10 +3,11 @@ var pattern = [];
 var level = 0;
 var begin = false;
 
-$(document).keypress(function() {
+$(".st").click(function() {
   if (!begin) {
     generate();
     begin = true;
+    $(".st").hide();
   }
 });
 
@@ -14,8 +15,8 @@ $(document).keypress(function() {
 $(".btn").click( function(event){
   if(begin){
     key = event.target.id;
-    sound(key);
     pressed(key);
+    sound(key);
     userinput.push(key);
     check(userinput.length-1);
   }
@@ -67,7 +68,7 @@ function random() {
 }
 
 function generate() {
-  userinput = []
+  userinput = [];
   pattern.push(random());
   sound(pattern[level]);
   pressed(pattern[level]);
@@ -102,5 +103,6 @@ function gameover() {
   level = 0
   userinput = [];
   pattern = [];
-  $("#level-title").text("Press any key to restart");
+  $(".st").show();
+  $("#level-title").text("Press start to restart");
   }
